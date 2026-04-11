@@ -117,52 +117,7 @@ const observer=new IntersectionObserver(entries=>{
  });
 });
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
-// Easter Egg: press 6 then 7 (fixed)
-let keySequence = "";
 
-const secretOverlay = document.createElement('div');
-secretOverlay.style.position = 'fixed';
-secretOverlay.style.top = '0';
-secretOverlay.style.left = '0';
-secretOverlay.style.width = '100%';
-secretOverlay.style.height = '100%';
-secretOverlay.style.background = 'rgba(0,0,0,0.85)';
-secretOverlay.style.display = 'flex';
-secretOverlay.style.justifyContent = 'center';
-secretOverlay.style.alignItems = 'center';
-secretOverlay.style.zIndex = '9999';
-secretOverlay.style.opacity = '0';
-secretOverlay.style.pointerEvents = 'none';
-secretOverlay.style.transition = '0.4s ease';
-
-secretOverlay.innerHTML = `
-  <div style="background:#111827;padding:40px 60px;border-radius:20px;text-align:center;box-shadow:0 0 40px rgba(56,189,248,0.3);">
-    <h1 style="font-size:4rem;color:#38bdf8;margin-bottom:20px;text-shadow:0 0 20px #38bdf8;">67</h1>
-    <iframe width="200" height="200" src="https://www.myinstants.com/instant/67-sound-90775/embed/" frameborder="0"></iframe>
-  </div>
-`;
-
-document.body.appendChild(secretOverlay);
-
-document.addEventListener("keydown", function(e) {
-  keySequence += e.key;
-
-  if (keySequence.includes("6️⃣ 67 Easter Egg 7️⃣")) {
-    secretOverlay.style.opacity = '1';
-    secretOverlay.style.pointerEvents = 'auto';
-
-    setTimeout(function() {
-      secretOverlay.style.opacity = '0';
-      secretOverlay.style.pointerEvents = 'none';
-    }, 3000);
-
-    keySequence = "";
-  }
-
-  if (keySequence.length > 2) {
-    keySequence = keySequence.slice(-2);
-  }
-});
 
 </script>
 
