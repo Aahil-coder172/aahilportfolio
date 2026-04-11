@@ -112,6 +112,23 @@ const observer=new IntersectionObserver(entries=>{
  });
 });
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
+// Easter Egg: press 6 then 7
+let keySequence = "";
+const secretSound = new Audio("https://www.myinstants.com/media/sounds/beep.mp3");
+
+document.addEventListener("keydown", (e) => {
+  keySequence += e.key;
+
+  if (keySequence.includes("67")) {
+    secretSound.play();
+    alert("✨ Secret 67 Activated ✨");
+    keySequence = "";
+  }
+
+  // prevent long string
+  if (keySequence.length > 5) keySequence = keySequence.slice(-2);
+});
+
 </script>
 
 </body>
