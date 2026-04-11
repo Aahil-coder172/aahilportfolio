@@ -83,8 +83,10 @@ footer{text-align:center;padding:25px;background:#020617;color:#94a3b8}
 <p>GitHub: https://github.com/Aahil-coder172</p>
 <p>Unstop: https://unstop.com/u/techokid19407</p>
 <p>YouTube: https://www.youtube.com/channel/UC0fKC4HBt_L1LYN9VSqSy1Q</p>
-<div style="margin-top:20px;">
+<div style="margin-top:20px;display:flex;gap:15px;flex-wrap:wrap;justify-content:center;">
 <a href="mailto:techokids1232@gmail.com" class="btn">Contact Me</a>
+
+
 </div>
 </section>
 
@@ -112,20 +114,47 @@ const observer=new IntersectionObserver(entries=>{
  });
 });
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
-// Easter Egg: press 6 then 7
+// Easter Egg: press 6 then 7 (UI overlay)
 let keySequence = "";
-const secretSound = new Audio("https://www.myinstants.com/media/sounds/beep.mp3");
+
+const secretOverlay = document.createElement('div');
+secretOverlay.style.position = 'fixed';
+secretOverlay.style.top = '0';
+secretOverlay.style.left = '0';
+secretOverlay.style.width = '100%';
+secretOverlay.style.height = '100%';
+secretOverlay.style.background = 'rgba(0,0,0,0.85)';
+secretOverlay.style.display = 'flex';
+secretOverlay.style.flexDirection = 'column';
+secretOverlay.style.justifyContent = 'center';
+secretOverlay.style.alignItems = 'center';
+secretOverlay.style.zIndex = '9999';
+secretOverlay.style.opacity = '0';
+secretOverlay.style.pointerEvents = 'none';
+secretOverlay.style.transition = '0.4s ease';
+
+secretOverlay.innerHTML = `
+  <h1 style="font-size:4rem;color:#38bdf8;margin-bottom:20px;">67</h1>
+  <iframe width="200" height="200" src="https://www.myinstants.com/instant/67-sound-90775/embed/" frameborder="0"></iframe>
+`;
+
+document.body.appendChild(secretOverlay);
 
 document.addEventListener("keydown", (e) => {
   keySequence += e.key;
 
   if (keySequence.includes("67")) {
-    secretSound.play();
-    alert("✨ Secret 67 Activated ✨");
+    secretOverlay.style.opacity = '1';
+    secretOverlay.style.pointerEvents = 'auto';
+
+    setTimeout(() => {
+      secretOverlay.style.opacity = '0';
+      secretOverlay.style.pointerEvents = 'none';
+    }, 3000);
+
     keySequence = "";
   }
 
-  // prevent long string
   if (keySequence.length > 5) keySequence = keySequence.slice(-2);
 });
 
