@@ -22,7 +22,11 @@ section{padding:100px 20px;max-width:1100px;margin:auto}
 
 .typing{border-right:2px solid #38bdf8;white-space:normal;overflow:hidden;max-width:90%;margin:auto;text-align:center;word-wrap:break-word}
 
-.btn{margin-top:25px;padding:12px 28px;background:#38bdf8;color:#020617;border-radius:30px;text-decoration:none;transition:.3s}
+.btn{margin-top:25px;padding:12px 28px;background:#38bdf8;color:#020617;border-radius:30px;text-decoration:none;transition:.3s;display:inline-block}
+.btn:hover{transform:scale(1.08);box-shadow:0 0 20px #38bdf8}
+
+/* Center button fix */
+#contact .btn{display:block;margin:20px auto 0 auto;width:fit-content;text-align:center}
 .btn:hover{transform:scale(1.08);box-shadow:0 0 20px #38bdf8}
 
 h2{margin-bottom:25px;color:#38bdf8;font-size:1.8rem}
@@ -37,6 +41,7 @@ footer{text-align:center;padding:25px;background:#020617;color:#94a3b8}
 
 .fade{opacity:0;transform:translateY(50px);transition:1s}
 .show{opacity:1;transform:translateY(0)}
+@keyframes scaleIn{from{transform:scale(0.7);opacity:0}to{transform:scale(1);opacity:1}}
 </style>
 </head>
 <body>
@@ -132,8 +137,10 @@ secretOverlay.style.pointerEvents = 'none';
 secretOverlay.style.transition = '0.4s ease';
 
 secretOverlay.innerHTML = `
-  <h1 style="font-size:4rem;color:#38bdf8;margin-bottom:20px;">67</h1>
-  <iframe width="200" height="200" src="https://www.myinstants.com/instant/67-sound-90775/embed/" frameborder="0"></iframe>
+  <div style="background:#111827;padding:40px 60px;border-radius:20px;text-align:center;box-shadow:0 0 40px rgba(56,189,248,0.3);animation:scaleIn 0.4s ease;">
+    <h1 style="font-size:4rem;color:#38bdf8;margin-bottom:20px;text-shadow:0 0 20px #38bdf8;">67</h1>
+    <iframe width="200" height="200" src="https://www.myinstants.com/instant/67-sound-90775/embed/" frameborder="0"></iframe>
+  </div>
 `;
 
 document.body.appendChild(secretOverlay);
@@ -141,7 +148,7 @@ document.body.appendChild(secretOverlay);
 document.addEventListener("keydown", (e) => {
   keySequence += e.key;
 
-  if (keySequence.includes("67")) {
+  if (keySequence.includes("6️⃣ 67 Easter Egg 7️⃣")) {
     secretOverlay.style.opacity = '1';
     secretOverlay.style.pointerEvents = 'auto';
 
