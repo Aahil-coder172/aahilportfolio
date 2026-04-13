@@ -167,8 +167,7 @@ overlay.style.pointerEvents='none';
 overlay.style.transition='0.3s ease';
 
 overlay.innerHTML=`
-  <div id="eggBox" style="background:#111827;padding:40px 60px;border-radius:20px;text-align:center;box-shadow:0 0 40px rgba(56,189,248,0.3);">
-  </div>
+  <div id="eggBox" style="background:#111827;padding:40px 60px;border-radius:20px;text-align:center;box-shadow:0 0 40px rgba(56,189,248,0.3);"></div>
 `;
 
 document.body.appendChild(overlay);
@@ -185,10 +184,9 @@ function showEgg(html){
   },3000);
 }
 
+// ===== Keyboard triggers =====
 let lastKey = '';
-
 document.addEventListener('keydown', (e)=>{
-  // 67 trigger
   if(lastKey==='6' && e.key==='7'){
     showEgg(`
       <h1 style="font-size:4rem;color:#38bdf8;margin-bottom:20px;">67</h1>
@@ -196,7 +194,6 @@ document.addEventListener('keydown', (e)=>{
     `);
   }
 
-  // technologia trigger (press T twice)
   if(lastKey==='t' && e.key==='t'){
     showEgg(`
       <h1 style="font-size:2.5rem;color:#22c55e;margin-bottom:20px;">TECHNOLOGIA</h1>
@@ -205,6 +202,40 @@ document.addEventListener('keydown', (e)=>{
   }
 
   lastKey = e.key.toLowerCase();
+});
+
+// ===== Mobile tap triggers =====
+let tapCount = 0;
+let lastTapTime = 0;
+
+document.addEventListener('touchstart', (e)=>{
+  const currentTime = new Date().getTime();
+
+  if(currentTime - lastTapTime < 400){
+    tapCount++;
+  } else {
+    tapCount = 1;
+  }
+
+  lastTapTime = currentTime;
+
+  // Triple tap anywhere = 67
+  if(tapCount === 3){
+    showEgg(`
+      <h1 style="font-size:4rem;color:#38bdf8;margin-bottom:20px;">67</h1>
+      <iframe width="200" height="200" src="https://www.myinstants.com/instant/67-sound-90775/embed/" frameborder="0"></iframe>
+    `);
+    tapCount = 0;
+  }
+
+  // Tap top area twice quickly = Technologia
+  if(e.touches[0].clientY < 100 && tapCount === 2){
+    showEgg(`
+      <h1 style="font-size:2.5rem;color:#22c55e;margin-bottom:20px;">TECHNOLOGIA</h1>
+      <iframe width="200" height="200" src="https://www.myinstants.com/instant/technologia-53863/embed/" frameborder="0"></iframe>
+    `);
+    tapCount = 0;
+  }
 });
 </script>
 
