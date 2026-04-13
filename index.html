@@ -7,41 +7,70 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#0b0f1a;color:#e5e7eb;overflow-x:hidden}
+body{
+  background:linear-gradient(270deg,#020617,#0f172a,#020617);
+  background-size:600% 600%;
+  animation:bgMove 12s ease infinite;
+  color:#e5e7eb;
+  scroll-behavior:smooth;
+}
+@keyframes bgMove{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
 
-header{position:fixed;width:100%;top:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(12px);padding:15px 0;z-index:1000}
+header{position:fixed;width:100%;top:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(12px);padding:15px 0;z-index:1000}
 nav{display:flex;justify-content:center;gap:30px}
-nav a{color:#38bdf8;text-decoration:none;font-weight:500;transition:.3s}
-nav a:hover{color:white}
+nav a{color:#38bdf8;text-decoration:none;font-weight:500;position:relative}
+nav a::after{content:'';position:absolute;width:0;height:2px;background:#38bdf8;left:0;bottom:-4px;transition:.3s}
+nav a:hover::after{width:100%}
 
 section{padding:100px 20px;max-width:1100px;margin:auto}
 
 .hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.hero h1{font-size:3.5rem;letter-spacing:1px}
-.hero p{margin-top:10px;color:#94a3b8;font-size:1.2rem}
+.hero h1{font-size:3.8rem;background:linear-gradient(90deg,#38bdf8,#22c55e);-webkit-background-clip:text;color:transparent}
+.hero p{margin-top:10px;color:#94a3b8;font-size:1.3rem}
 
-.typing{border-right:2px solid #38bdf8;white-space:normal;overflow:hidden;max-width:90%;margin:auto;text-align:center;word-wrap:break-word}
+.typing{border-right:2px solid #38bdf8;white-space:normal;max-width:90%}
 
-.btn{margin-top:25px;padding:12px 28px;background:#38bdf8;color:#020617;border-radius:30px;text-decoration:none;transition:.3s;display:inline-block}
-.btn:hover{transform:scale(1.08);box-shadow:0 0 20px #38bdf8}
+.btn{
+  margin-top:20px;
+  padding:12px 30px;
+  border-radius:30px;
+  text-decoration:none;
+  display:inline-block;
+  transition:.3s;
+}
+.btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 0 20px rgba(56,189,248,0.6)}
 
-/* Center button fix */
-#contact .btn{display:block;margin:20px auto 0 auto;width:fit-content;text-align:center}
-.btn:hover{transform:scale(1.08);box-shadow:0 0 20px #38bdf8}
+h2{margin-bottom:25px;color:#38bdf8;font-size:2rem;text-align:center}
 
-h2{margin-bottom:25px;color:#38bdf8;font-size:1.8rem}
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  padding:25px;
+  border-radius:20px;
+  margin-bottom:20px;
+  transition:.4s;
+  border:1px solid rgba(255,255,255,0.08);
+}
+.card:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:0 10px 40px rgba(56,189,248,0.25);
+}
 
-.card{background:#111827;padding:20px;border-radius:18px;margin-bottom:20px;transition:.4s}
-.card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 10px 30px rgba(56,189,248,0.2)}
-
-.skills span{display:inline-block;background:#1f2937;padding:10px 18px;margin:6px;border-radius:25px;transition:.3s}
+.skills{display:flex;flex-wrap:wrap;justify-content:center}
+.skills span{
+  background:#1f2937;
+  padding:10px 18px;
+  margin:6px;
+  border-radius:25px;
+  transition:.3s;
+}
 .skills span:hover{background:#38bdf8;color:#020617}
 
 footer{text-align:center;padding:25px;background:#020617;color:#94a3b8}
 
 .fade{opacity:0;transform:translateY(50px);transition:1s}
 .show{opacity:1;transform:translateY(0)}
-@keyframes scaleIn{from{transform:scale(0.7);opacity:0}to{transform:scale(1);opacity:1}}
+
 </style>
 </head>
 <body>
@@ -59,12 +88,14 @@ footer{text-align:center;padding:25px;background:#020617;color:#94a3b8}
 <section class="hero">
 <h1>Aahil</h1>
 <p class="typing" id="typing"></p>
-<a href="#projects" class="btn">View Projects</a>
+<a href="#projects" class="btn" style="background:#38bdf8;color:#020617;">View Projects</a>
 </section>
 
 <section id="about" class="fade">
 <h2>About Me</h2>
-<p>I am a robotics enthusiast passionate about building intelligent systems using Arduino, IoT, and embedded technologies. I focus on creating real-world solutions through automation and continuously improving my skills in AI and robotics.</p>
+<div class="card">
+<p>I am a robotics enthusiast passionate about building intelligent systems using Arduino, IoT, and embedded technologies. I create real-world solutions through automation and constantly explore new innovations in AI and robotics.</p>
+</div>
 </section>
 
 <section id="projects" class="fade">
@@ -84,35 +115,34 @@ footer{text-align:center;padding:25px;background:#020617;color:#94a3b8}
 
 <section id="contact" class="fade">
 <h2>Contact</h2>
-<div style="background:#111827;padding:30px;border-radius:20px;max-width:500px;margin:auto;text-align:center;box-shadow:0 10px 30px rgba(56,189,248,0.15);">
-<div style="display:flex;flex-direction:column;gap:14px;margin-bottom:10px;align-items:center;">
-<a href="mailto:techokids1232@gmail.com" class="btn" style="background:#22c55e;color:#022c22;">📧 Email Me</a>
-<a href="https://github.com/Aahil-coder172" target="_blank" class="btn" style="background:#111827;color:#e5e7eb;border:1px solid #374151;">💻 GitHub</a>
+<div style="background:rgba(255,255,255,0.05);padding:30px;border-radius:20px;max-width:500px;margin:auto;text-align:center;backdrop-filter:blur(12px);">
+<div style="display:flex;flex-direction:column;gap:14px;align-items:center;">
+<a href="mailto:techokids1232@gmail.com" class="btn" style="background:#22c55e;color:#022c22;">📧 Email</a>
+<a href="https://github.com/Aahil-coder172" target="_blank" class="btn" style="background:#111827;color:#e5e7eb;">💻 GitHub</a>
 <a href="https://unstop.com/u/techokid19407" target="_blank" class="btn" style="background:#f97316;color:#1f2937;">🏆 Unstop</a>
 <a href="https://www.youtube.com/channel/UC0fKC4HBt_L1LYN9VSqSy1Q" target="_blank" class="btn" style="background:#ef4444;color:white;">▶️ YouTube</a>
 </div>
-
 </div>
 </section>
 
 <footer>
-<p>© 2026 Aahil | Professional Portfolio</p>
+<p>© 2026 Aahil | Next Level Portfolio</p>
 </footer>
 
 <script>
-// Typing effect
+// typing
 const text="Robotics Enthusiast | Building Smart & Autonomous Systems";
 let i=0;
 function typing(){
  if(i<text.length){
   document.getElementById("typing").innerHTML+=text.charAt(i);
   i++;
-  setTimeout(typing,35);
+  setTimeout(typing,30);
  }
 }
 typing();
 
-// Scroll animation
+// scroll animation
 const observer=new IntersectionObserver(entries=>{
  entries.forEach(entry=>{
   if(entry.isIntersecting){entry.target.classList.add('show');}
@@ -120,7 +150,62 @@ const observer=new IntersectionObserver(entries=>{
 });
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 
+// ===== Premium Easter Eggs (67 + Technologia) =====
+const overlay = document.createElement('div');
+overlay.style.position='fixed';
+overlay.style.top='0';
+overlay.style.left='0';
+overlay.style.width='100%';
+overlay.style.height='100%';
+overlay.style.background='rgba(0,0,0,0.85)';
+overlay.style.display='flex';
+overlay.style.justifyContent='center';
+overlay.style.alignItems='center';
+overlay.style.zIndex='9999';
+overlay.style.opacity='0';
+overlay.style.pointerEvents='none';
+overlay.style.transition='0.3s ease';
 
+overlay.innerHTML=`
+  <div id="eggBox" style="background:#111827;padding:40px 60px;border-radius:20px;text-align:center;box-shadow:0 0 40px rgba(56,189,248,0.3);">
+  </div>
+`;
+
+document.body.appendChild(overlay);
+
+const eggBox = overlay.querySelector('#eggBox');
+
+function showEgg(html){
+  eggBox.innerHTML = html;
+  overlay.style.opacity='1';
+  overlay.style.pointerEvents='auto';
+  setTimeout(()=>{
+    overlay.style.opacity='0';
+    overlay.style.pointerEvents='none';
+  },3000);
+}
+
+let lastKey = '';
+
+document.addEventListener('keydown', (e)=>{
+  // 67 trigger
+  if(lastKey==='6' && e.key==='7'){
+    showEgg(`
+      <h1 style="font-size:4rem;color:#38bdf8;margin-bottom:20px;">67</h1>
+      <iframe width="200" height="200" src="https://www.myinstants.com/instant/67-sound-90775/embed/" frameborder="0"></iframe>
+    `);
+  }
+
+  // technologia trigger (press T twice)
+  if(lastKey==='t' && e.key==='t'){
+    showEgg(`
+      <h1 style="font-size:2.5rem;color:#22c55e;margin-bottom:20px;">TECHNOLOGIA</h1>
+      <iframe width="200" height="200" src="https://www.myinstants.com/instant/technologia-53863/embed/" frameborder="0"></iframe>
+    `);
+  }
+
+  lastKey = e.key.toLowerCase();
+});
 </script>
 
 </body>
