@@ -204,9 +204,13 @@ document.addEventListener('keydown', (e)=>{
   lastKey = e.key.toLowerCase();
 });
 
-// ===== Mobile tap triggers =====
+// ===== Mobile tap triggers (fixed repeat issue) =====
 let tapCount = 0;
 let lastTapTime = 0;
+
+function resetTaps(){
+  tapCount = 0;
+}
 
 document.addEventListener('touchstart', (e)=>{
   const currentTime = new Date().getTime();
@@ -219,23 +223,28 @@ document.addEventListener('touchstart', (e)=>{
 
   lastTapTime = currentTime;
 
-  // Triple tap anywhere = 67
+  // Triple tap = 67
   if(tapCount === 3){
     showEgg(`
       <h1 style="font-size:4rem;color:#38bdf8;margin-bottom:20px;">67</h1>
       <iframe width="200" height="200" src="https://www.myinstants.com/instant/67-sound-90775/embed/" frameborder="0"></iframe>
     `);
-    tapCount = 0;
+    setTimeout(resetTaps,500);
   }
 
-  // Tap top area twice quickly = Technologia
+  // Double tap top = Technologia
   if(e.touches[0].clientY < 100 && tapCount === 2){
     showEgg(`
       <h1 style="font-size:2.5rem;color:#22c55e;margin-bottom:20px;">TECHNOLOGIA</h1>
       <iframe width="200" height="200" src="https://www.myinstants.com/instant/technologia-53863/embed/" frameborder="0"></iframe>
     `);
-    tapCount = 0;
+    setTimeout(resetTaps,500);
   }
+
+  // auto reset if user stops tapping
+  setTimeout(()=>{
+    tapCount = 0;
+  },800);
 });
 </script>
 
